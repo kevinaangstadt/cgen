@@ -1,0 +1,25 @@
+program -> definition ; program EOF
+
+definition -> DEF ID ( args ) = exp
+
+args -> args_list
+      | <empty>
+
+args_list -> ID , args_list
+           | ID
+
+exp -> INT
+     | ID
+     | IF ( exp = exp ) { exp } ELSE { exp }
+     | exp + exp
+     | exp - exp
+     | ID ( exp_list ) 
+
+exp_list -> nl_exp_list
+          | <empty>
+
+nl_exp_list -> exp , nl_exp_list
+             | exp
+
+NOTE: starting point of the program is 
+special function main()

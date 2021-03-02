@@ -1,0 +1,7 @@
+(executable
+    (name main)
+    (promote (until-clean))
+)
+
+(ocamllex lexer)
+(ocamlyacc parser)
