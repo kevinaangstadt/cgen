@@ -1,0 +1,38 @@
+-- class_example.cl-asm
+start:
+    -- compute 3 + ( 7 - 5 )
+
+    -- load 3 into acc
+    li r0 <- 3
+
+    -- push acc
+    push r0
+
+    -- load 7 into acc
+    li r0 <- 7
+
+    -- push acc
+    push r0
+
+    -- load 5 into acc
+    li r0 <- 5
+
+    -- pop stack into temp
+    pop r7
+
+    sub r0 <- r7 r0
+
+    -- pop
+    pop r7
+
+    add r0 <- r7 r0
+
+
+    -- load number into r1
+    -- call syscall IO.out_int
+    -- to print the number in r1 to the screen
+
+    mov r1 <- r0
+    syscall IO.out_int
+
+    syscall exit

@@ -34,7 +34,8 @@ let program = {
     }
 };
 
-// print out the program
-// TODO change this to generate code
-print_endline(Ast.prog_to_string(program));
+
+// open output file
+let out_file = open_out("a.cl-asm");
+Cgen.cgen_program(out_file, program);
 
