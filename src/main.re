@@ -4,6 +4,8 @@
  * St. Lawrence University
  */
 
+open Util;
+
 
 // check that there is one command line argument
 if (Array.length(Sys.argv) != 2) {
@@ -15,20 +17,16 @@ if (Array.length(Sys.argv) != 2) {
 let fin = open_in(Sys.argv[1]);
 let program = {
     // create lexer from the input file
-    let buff = Lexing.from_channel(fin);
+    let buf = Sedlexing.Utf8.from_channel(fin);
+    let lexer = Sedlexing.with_tokenizer(Lexer.token, buf);
+    let parser = MenhirLib.Convert.Simplified.traditional2revised(Parser.program);
 
     // try to parse the program
-    try(Parser.program(Lexer.token, buff)) {
+    try(parser(lexer)) {
         | _ => {
             // catch any parsing error and print out a helpful error message
-            let curr = buff.Lexing.lex_curr_p;
-            let line = curr.Lexing.pos_lnum;
-            let cnum = curr.Lexing.pos_cnum - curr.Lexing.pos_bol;
-            let tok = Lexing.lexeme(buff);
-            Printf.printf("Parsing Error: \n");
-            Printf.printf( "line: %d\n", line );
-            Printf.printf( "column: %d\n", cnum );
-            Printf.printf( "token: %s\n", tok);
+            let loc = where(buf);
+            Printf.eprintf("Error: %d:%d: Parser: failed to parse\n", loc.line, loc.col);
             exit(1)
         }
     }

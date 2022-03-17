@@ -1,4 +1,5 @@
 program -> definition ; program EOF
+         | definition EOF
 
 definition -> DEF ID ( args ) = exp
 

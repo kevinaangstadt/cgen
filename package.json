@@ -1,0 +1,23 @@
+{
+    "name": "cgen",
+    "version": "2.0.0",
+    "esy": {
+        "build": "dune build -p #{self.name}"
+    },
+    "dependencies": {
+        "@opam/reason": "^3.7.0",
+        "@opam/dune": "2.9.1",
+        "ocaml": "4.12.0",
+        "@opam/sedlex": "2.5",
+        "@opam/yojson": "*"
+    },
+    "devDependencies": {
+        "@opam/merlin": "*",
+        "@opam/ocaml-lsp-server": "*",
+        "@opam/ocamlformat-rpc": "*",
+        "@opam/ocp-indent": "*"
+    },
+    "resolutions": {
+        "@opam/ocp-indent": "kevinaangstadt/ocp-indent:ocp-indent.opam#60ed167"
+    }
+}
