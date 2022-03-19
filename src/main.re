@@ -34,5 +34,5 @@ let program = {
 
 // print out the program
 // TODO change this to generate code
-print_endline(Ast.prog_to_string(program));
-
+//print_endline(Ast.prog_to_string(program));
+Cgen.cgen_prog(program);
