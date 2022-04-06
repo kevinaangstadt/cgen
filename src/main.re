@@ -1,6 +1,6 @@
 /*
  * Simple code generator for expression/function language
- * CS 364 Spring 2021
+ * CS 364
  * St. Lawrence University
  */
 
